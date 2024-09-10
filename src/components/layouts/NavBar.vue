@@ -1,5 +1,5 @@
 <template>
-    <header class="styleMain">
+    <header class="styleMainNavBar">
         <div class="styleLogo">
             <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="25" height="25" /> -->
             <font-awesome-icon :icon="['fas', 'cube']" />
@@ -12,6 +12,9 @@
             </nav>
         </div>
         <div class="styleButton">
+            <button class="styleButtonIconLight">
+                <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+            </button>
             <button class="styleButtonLight">Login</button>
             <button class="styleButtonShadow">Register</button>
         </div>
@@ -24,8 +27,8 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <style scoped>
-.styleMain {
-    @apply flex justify-between items-center p-2 
+.styleMainNavBar {
+    @apply flex justify-between items-center p-2
 }
 
 .styleLogo {
@@ -44,11 +47,5 @@ import { RouterLink } from 'vue-router'
     @apply flex gap-2
 }
 
-.styleButtonLight {
-    @apply border py-2 px-6 rounded-sm hover:bg-black hover:text-white border-black bg-white text-black
-}
 
-.styleButtonShadow {
-    @apply border py-2 px-6 rounded-sm hover:bg-white hover:text-black border-black bg-black text-white
-}
 </style>

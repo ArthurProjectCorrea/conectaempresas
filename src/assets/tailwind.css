@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.styleButtonIconLight {
+  @apply border py-2 px-4 rounded-sm hover:bg-black hover:text-white border-black bg-white text-black;
+}
+.styleButtonIconShadow {
+  @apply border py-2 px-4 rounded-sm hover:bg-white hover:text-black border-black bg-black text-white;
+}
+.styleButtonLight {
+  @apply border py-2 px-6 rounded-sm hover:bg-black hover:text-white border-black bg-white text-black;
+}
+.styleButtonShadow {
+  @apply border py-2 px-6 rounded-sm hover:bg-white hover:text-black border-black bg-black text-white;
+}

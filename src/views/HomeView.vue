@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>This is an about page</h1>
+  <div class="flex justify-center items-center p-32">
+    <h1 class="text-3xl uppercase font-bold">in development</h1>
   </div>
 </template>
 
