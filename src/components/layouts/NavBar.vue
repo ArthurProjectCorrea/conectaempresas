@@ -25,7 +25,7 @@ import { RouterLink } from 'vue-router'
 
 <style scoped>
 .styleMain {
-    @apply flex justify-between items-center p-2 border border-red-500
+    @apply flex justify-between items-center p-2 
 }
 
 .styleLogo {
