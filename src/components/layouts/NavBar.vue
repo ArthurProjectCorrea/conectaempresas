@@ -7,8 +7,8 @@
         </div>
         <div>
             <nav class="styleNavigation">
-                <RouterLink to="/">Home</RouterLink>
-                <RouterLink to="/category">Category</RouterLink>
+                <RouterLink active-class="active" to="/">Home</RouterLink>
+                <RouterLink active-class="active" to="/category">Category</RouterLink>
             </nav>
         </div>
         <div class="styleButton">
@@ -36,7 +36,7 @@ import { RouterLink } from 'vue-router'
 }
 
 .styleNavigation {
-    @apply flex gap-2 font-semibold
+    @apply flex gap-4 font-semibold
 }
 
 .styleLogoH1 {
@@ -47,5 +47,7 @@ import { RouterLink } from 'vue-router'
     @apply flex gap-2
 }
 
-
+.active {
+    @apply border-b-2 border-black
+}
 </style>
