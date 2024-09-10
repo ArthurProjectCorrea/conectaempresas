@@ -4,7 +4,7 @@
       <SearchCustom />
     </div>
     <div>
-      <CardCustom />
+      <!-- <CardCustom /> -->
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ import SearchCustom from '../components/SearchCustom.vue'
 
 <style>
 .styleMainCategoryView {
-  @apply p-2 border border-red-500 flex-col justify-center items-center gap-2
+  @apply flex-col justify-center items-center p-2 gap-2
 }
 
 .styleSearch {
