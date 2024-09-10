@@ -3,8 +3,8 @@
     <div class="styleSearch">
       <SearchCustom />
     </div>
-    <div>
-      <!-- <CardCustom /> -->
+    <div class="styleCards">
+      <CardCustom />
     </div>
   </div>
 </template>
@@ -22,5 +22,9 @@ import SearchCustom from '../components/SearchCustom.vue'
 
 .styleSearch {
   @apply flex justify-center items-center mt-10 mb-10
+}
+
+.styleCards{
+  @apply p-2 border border-red-500 
 }
 </style>
