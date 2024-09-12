@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import connectDB from './db.js';  // Importa a função de conexão com o MongoDB
+import connectDB from './mongodb.js';  // Importa a função de conexão com o MongoDB
 
 const app = express();
 const port = 3000;
