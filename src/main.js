@@ -7,9 +7,9 @@ import router from "./router";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faCube, faMagnifyingGlass, faSliders} from "@fortawesome/free-solid-svg-icons";
+import { faCube, faMagnifyingGlass, faSliders, faTrash} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faCube, faMagnifyingGlass, faSliders);
+library.add(faCube, faMagnifyingGlass, faSliders, faTrash);
 
 createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)

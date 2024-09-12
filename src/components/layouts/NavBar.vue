@@ -1,17 +1,17 @@
 <template>
-    <header class="styleMainNavBar">
-        <div class="styleLogo">
+    <header class="B5623947">
+        <div class="C7819023">
             <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="25" height="25" /> -->
             <font-awesome-icon :icon="['fas', 'cube']" />
-            <h1 class="styleLogoH1">ConnectCorp</h1>
+            <h1 class="D6742518">ConnectCorp</h1>
         </div>
         <div>
-            <nav class="styleNavigation">
-                <RouterLink active-class="active" to="/">Home</RouterLink>
-                <RouterLink active-class="active" to="/category">Category</RouterLink>
+            <nav class="E8923417">
+                <RouterLink active-class="G1847592" to="/">Home</RouterLink>
+                <RouterLink active-class="G1847592" to="/enterprise">Empresas</RouterLink>
             </nav>
         </div>
-        <div class="styleButton">
+        <div class="F9034286">
             <button class="styleButtonIconLight">
                 <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
             </button>
@@ -27,27 +27,27 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <style scoped>
-.styleMainNavBar {
+.B5623947 {
     @apply flex justify-between items-center p-2
 }
 
-.styleLogo {
+.C7819023 {
     @apply flex justify-center items-center gap-2 text-lg
 }
 
-.styleNavigation {
+.E8923417 {
     @apply flex gap-4 font-semibold
 }
 
-.styleLogoH1 {
+.D6742518 {
     @apply font-abel font-bold
 }
 
-.styleButton {
+.F9034286 {
     @apply flex gap-2
 }
 
-.active {
+.G1847592 {
     @apply border-b-2 border-black
 }
 </style>
