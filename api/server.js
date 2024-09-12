@@ -1,5 +1,6 @@
-import express from "express";
-import cors from "cors";
+import express from 'express';
+import cors from 'cors';
+import connectDB from './db.js';  // Importa a função de conexão com o MongoDB
 
 const app = express();
 const port = 3000;
@@ -7,8 +8,10 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello from the backend!");
+connectDB();
+
+app.get('/', (req, res) => {
+  res.send('Hello from the backend!');
 });
 
 app.listen(port, () => {
