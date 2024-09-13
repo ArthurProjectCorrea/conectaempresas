@@ -1,10 +1,7 @@
 import mongoose from "mongoose";
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/conectaempresas", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    mongoose.connect("mongodb://localhost:27017/conectaempresas")
     console.log("Conectado ao MongoDB");
   } catch (error) {
     console.error("Erro ao conectar ao MongoDB:", error);

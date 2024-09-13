@@ -3,13 +3,8 @@
     <div class="M9716304">
       <div class="J5604927">
         <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
-        <form @submit.prevent="createCompany" class="T9304721">
-          <input v-model="newCompany.name" id="name" type="text" placeholder="Search..." class="K1987436" />
-          <select v-model="newCompany.categories_id" id="category">
-            <option v-for="category in categories" :key="category._id" :value="category._id">
-              {{ category.name }}
-            </option>
-          </select>
+        <form class="T9304721">
+          <input id="name" type="text" placeholder="Search..." class="K1987436" />
           <button type="submit" class="styleButtonIconLight">
             <font-awesome-icon :icon="['fas', 'sliders']" />
           </button>
@@ -23,7 +18,6 @@
           <label v-for="category in categories" :key="category._id" class="L2847951">
             <input type="checkbox" id="option1" name="option1" :value="category.id">
             {{ category.name }}
-            <!-- <button @click="deleteCategory(category._id)">Excluir</button> -->
           </label>
         </form>
       </div>
@@ -35,7 +29,6 @@
             <div>{{ company.name }}</div>
             <div>{{ company.categories_id.name }}</div>
             <div>{{ company.description }}</div>
-            <button @click="deleteCompany(company._id)">Excluir</button>
           </div>
         </div>
       </div>
@@ -76,32 +69,6 @@ const fetchCategories = async () => {
     categories.value = data;
   } catch (error) {
     console.error('Erro ao buscar categorias:', error);
-  }
-};
-
-// Função para criar uma nova empresa
-const createCompany = async () => {
-  if (!newCompany.value.name || !newCompany.value.categories_id) {
-    alert('Nome e categoria são obrigatórios');
-    return;
-  }
-
-  try {
-    const { data } = await axios.post('http://localhost:3000/api/companies', newCompany.value);
-    companies.value.push(data);  // Adiciona a nova empresa à lista
-    newCompany.value = { name: '', categories_id: '', description: '' };  // Limpa o formulário
-  } catch (error) {
-    console.error('Erro ao criar empresa:', error);
-  }
-};
-
-// Função para deletar uma empresa
-const deleteCompany = async (id) => {
-  try {
-    await axios.delete(`http://localhost:3000/api/companies/${id}`);
-    companies.value = companies.value.filter(company => company._id !== id);  // Remove a empresa da lista
-  } catch (error) {
-    console.error('Erro ao deletar empresa:', error);
   }
 };
 

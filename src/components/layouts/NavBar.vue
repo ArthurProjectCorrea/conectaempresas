@@ -12,17 +12,31 @@
             </nav>
         </div>
         <div class="F9034286">
-            <button class="styleButtonIconLight">
+            <button @click="openPopup" class="styleButtonIconLight">
                 <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
             </button>
+
             <button class="styleButtonLight">Login</button>
             <button class="styleButtonShadow">Register</button>
         </div>
     </header>
+    <Popup ref="popup">
+        <FormCustom class="overflow-auto"/>
+    </Popup>
 </template>
 
 <script setup>
 import { RouterLink } from 'vue-router'
+import { ref } from 'vue'
+import Popup from '../Popup.vue'
+import FormCustom from '../FormCustom.vue'
+
+// Usa a referência para acessar o método exposto
+const popup = ref(null)
+
+const openPopup = () => {
+    popup.value.openPopup()
+}
 
 </script>
 
