@@ -1,24 +1,27 @@
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
-import connectDB from "./mongodb.js";
-import categoryRoutes from "./routes/categoryRoutes.js"; // Importa as rotas de categorias
-import companyRoutes from "./routes/companyRoutes.js"; // Importa as rotas de empresas
+import categoryRoutes from "./routes/categoryRoutes.js";
+import companyRoutes from "./routes/companyRoutes.js";
 
 const app = express();
-const port = 3000;
-
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 // Conectar ao MongoDB
-connectDB();
+mongoose
+  .connect("mongodb://localhost:27017/conectaempresas")
+  .then(() => {
+    console.log("Conectado ao MongoDB");
+  })
+  .catch((error) => {
+    console.error("Erro ao conectar ao MongoDB:", error);
+  });
 
-// Usar as rotas de categorias
-app.use("/api/categories", categoryRoutes);
+// Usar as rotas
+app.use("/api", categoryRoutes);
+app.use("/api", companyRoutes);
 
-// Usar as rotas de empresas
-app.use("/api/companies", companyRoutes);
-
-app.listen(port, () => {
-  console.log(`Backend rodando na porta ${port}`);
+app.listen(3000, () => {
+  console.log("Servidor rodando na porta 3000");
 });

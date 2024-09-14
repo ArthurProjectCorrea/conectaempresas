@@ -20,7 +20,7 @@
             <button class="styleButtonShadow">Register</button>
         </div>
     </header>
-    <Popup ref="popup">
+    <Popup ref="popup" >
         <FormCustom class="overflow-auto"/>
     </Popup>
 </template>
@@ -28,7 +28,7 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
-import Popup from '../Popup.vue'
+import Popup from '../overall/Popup.vue'
 import FormCustom from '../FormCustom.vue'
 
 // Usa a referência para acessar o método exposto

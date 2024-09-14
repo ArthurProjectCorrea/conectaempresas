@@ -4,30 +4,31 @@
       <div class="J5604927">
         <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
         <form class="T9304721">
-          <input id="name" type="text" placeholder="Search..." class="K1987436" />
-          <button type="submit" class="styleButtonIconLight">
-            <font-awesome-icon :icon="['fas', 'sliders']" />
-          </button>
+          <input id="name" type="text" placeholder="Search by name or CNPJ" class="K1987436" />
         </form>
+        <button @click="openPopup" class="styleButtonIconLight">
+          <font-awesome-icon :icon="['fas', 'sliders']" />
+        </button>
+        <Popup ref="popup" namePopup="Filtro">
+          <FilterEnterprise/>
+        </Popup>
       </div>
     </div>
     <div class="N8421573">
-      <div class="R7163920">
-        <form action="">
-          <h1 class="S4839205">Categorias</h1>
-          <label v-for="category in categories" :key="category._id" class="L2847951">
-            <input type="checkbox" id="option1" name="option1" :value="category.id">
-            {{ category.name }}
-          </label>
-        </form>
-      </div>
+      <!-- <div class="R7163920">
+        <h1 class="S4839205">Categorias</h1>
+        <label v-for="category in categories" :key="category._id" class="L2847951">
+          <input type="checkbox" id="option1" name="option1" :value="category.id">
+          {{ category.name }}
+        </label>
+      </div> -->
       <div class="U2846137">
-        <div v-for="company in companies" :key="company._id" class="P3047698">
+        <div v-for="company in companies" :key="company.id" class="P3047698">
           <div class="Q9512847"></div>
           <div>
-            <div>{{ company._id }}</div>
+            <!-- <div>{{ company._id }}</div> -->
             <div>{{ company.name }}</div>
-            <div>{{ company.categories_id.name }}</div>
+            <!-- <div>{{ company.categories_id.name }}</div> -->
             <div>{{ company.description }}</div>
           </div>
         </div>
@@ -39,50 +40,50 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import Popup from '@/components/overall/Popup.vue';
+import FilterEnterprise from '@/components/FilterEnterprise.vue';
 
-// Variáveis reativas
-const newCompany = ref({
-  name: '',
-  categories_id: '',
-  description: '',
-});
+const popup = ref(null)
 
-const companies = ref([]);
+
+// Dados para categorias e empresas
 const categories = ref([]);
+const companies = ref([]);
 
-// Função para buscar todas as empresas
-const fetchCompanies = async () => {
-  try {
-    const { data } = await axios.get('http://localhost:3000/api/companies');
-    companies.value = data;
-  } catch (error) {
-    console.error('Erro ao buscar empresas:', error);
-  }
-};
-
-console.log()
-
-// Função para buscar todas as categorias
+const openPopup = () => {
+  popup.value.openPopup()
+}
+// Funções para obter os dados
 const fetchCategories = async () => {
   try {
-    const { data } = await axios.get('http://localhost:3000/api/categories');
-    categories.value = data;
+    const response = await axios.get('http://localhost:3000/api/categorias');
+    categories.value = response.data;
   } catch (error) {
-    console.error('Erro ao buscar categorias:', error);
+    console.error('Erro ao obter categorias:', error);
   }
 };
 
-// Chama as funções para buscar empresas e categorias quando o componente é montado
+const fetchCompanies = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/api/empresas');
+    companies.value = response.data;
+  } catch (error) {
+    console.error('Erro ao obter empresas:', error);
+  }
+};
+
+// Obter os dados ao montar o componente
 onMounted(() => {
-  fetchCompanies();
   fetchCategories();
+  fetchCompanies();
 });
 </script>
 
 <style>
-.U2846137{
-  @apply w-full                                                                                                                                                                                                                                                                                                                              
+.U2846137 {
+  @apply w-full
 }
+
 .T9304721 {
   @apply flex w-full
 }
@@ -104,7 +105,7 @@ onMounted(() => {
 }
 
 .R7163920 {
-  @apply px-8 p-2
+  @apply px-8 p-2 w-1/5
 }
 
 .S4839205 {

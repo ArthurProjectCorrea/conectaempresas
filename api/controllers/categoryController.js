@@ -1,44 +1,44 @@
-import Category from "../models/Category.js";
+import Category from "../models/categoryModel.js";
 
-// Criar uma nova categoria
-export const createCategory = async (req, res) => {
-  const { name } = req.body;
-
-  if (!name) {
-    return res
-      .status(400)
-      .json({ message: "O nome da categoria é obrigatório" });
-  }
-
+export const createCategoryController = async (req, res) => {
   try {
-    const category = new Category({ name });
-    await category.save();
-    res.status(201).json(category);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-// Listar todas as categorias
-export const getCategories = async (req, res) => {
-  try {
-    const categories = await Category.find();
-    res.status(200).json(categories);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-// Deletar uma categoria
-export const deleteCategory = async (req, res) => {
-  try {
-    const category = await Category.findByIdAndDelete(req.params.id);
-    if (category) {
-      res.status(200).json({ message: "Categoria excluída com sucesso" });
-    } else {
-      res.status(404).json({ message: "Categoria não encontrada" });
+    const { name } = req.body;
+    if (!name) {
+      return res
+        .status(400)
+        .json({ error: "O nome da categoria é obrigatório" });
     }
+
+    const novaCategoria = new Category({ name });
+    await novaCategoria.save();
+
+    res.status(201).json(novaCategoria);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Erro ao criar categoria:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
+};
+
+export const deleteCategoryController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const resultado = await Category.findByIdAndDelete(id);
+    if (!resultado) {
+      return res.status(404).json({ error: "Categoria não encontrada" });
+    }
+    res.status(200).json({ message: "Categoria deletada com sucesso" });
+  } catch (error) {
+    console.error("Erro ao deletar categoria:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
+};
+
+export const listCategoriesController = async (req, res) => {
+  try {
+    const categorias = await Category.find();
+    res.status(200).json(categorias);
+  } catch (error) {
+    console.error("Erro ao listar categorias:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
   }
 };

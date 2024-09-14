@@ -1,44 +1,44 @@
-import Company from "../models/Company.js";
+import Company from "../models/companyModel.js";
 
-// Criar uma nova empresa
-export const createCompany = async (req, res) => {
-  const { name, categories_id, description } = req.body;
-
-  if (!name || !categories_id) {
-    return res
-      .status(400)
-      .json({ message: "Nome e categoria são obrigatórios" });
-  }
-
+export const createCompanyController = async (req, res) => {
   try {
-    const company = new Company({ name, categories_id, description });
-    await company.save();
-    res.status(201).json(company);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-// Listar todas as empresas
-export const getCompanies = async (req, res) => {
-  try {
-    const companies = await Company.find().populate("categories_id", "name");
-    res.status(200).json(companies);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-// Deletar uma empresa
-export const deleteCompany = async (req, res) => {
-  try {
-    const company = await Company.findByIdAndDelete(req.params.id);
-    if (company) {
-      res.status(200).json({ message: "Empresa excluída com sucesso" });
-    } else {
-      res.status(404).json({ message: "Empresa não encontrada" });
+    const { name, description } = req.body;
+    if (!name || !description) {
+      return res
+        .status(400)
+        .json({ error: "Nome e descrição da empresa são obrigatórios" });
     }
+
+    const novaEmpresa = new Company({ name, description });
+    await novaEmpresa.save();
+
+    res.status(201).json(novaEmpresa);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Erro ao criar empresa:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
+};
+
+export const deleteCompanyController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const resultado = await Company.findByIdAndDelete(id);
+    if (!resultado) {
+      return res.status(404).json({ error: "Empresa não encontrada" });
+    }
+    res.status(200).json({ message: "Empresa deletada com sucesso" });
+  } catch (error) {
+    console.error("Erro ao deletar empresa:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
+};
+
+export const listCompaniesController = async (req, res) => {
+  try {
+    const empresas = await Company.find();
+    res.status(200).json(empresas);
+  } catch (error) {
+    console.error("Erro ao listar empresas:", error);
+    res.status(500).json({ error: "Erro interno do servidor" });
   }
 };

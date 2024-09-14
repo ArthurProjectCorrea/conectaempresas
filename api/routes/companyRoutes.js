@@ -1,15 +1,14 @@
 import express from "express";
 import {
-  createCompany,
-  getCompanies,
-  deleteCompany,
+  createCompanyController,
+  deleteCompanyController,
+  listCompaniesController,
 } from "../controllers/companyController.js";
 
 const router = express.Router();
 
-// Rotas para empresas
-router.post("/", createCompany);
-router.get("/", getCompanies);
-router.delete("/:id", deleteCompany);
+router.post("/empresas", createCompanyController);
+router.delete("/empresas/:id", deleteCompanyController);
+router.get("/empresas", listCompaniesController);
 
 export default router;
